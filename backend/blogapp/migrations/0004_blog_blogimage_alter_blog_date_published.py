@@ -15,7 +15,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='blog',
             name='blogImage',
-            field=models.ImageField(default='blogs/default.png', upload_to=blogapp.models.upload_to, verbose_name='Image'),
+            field=models.ImageField(default='blogs/logo.svg', upload_to=blogapp.models.upload_to, verbose_name='Image'),
         ),
         migrations.AlterField(
             model_name='blog',

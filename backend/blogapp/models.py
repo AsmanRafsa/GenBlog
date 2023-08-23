@@ -10,7 +10,7 @@ def upload_to(instance,filename):
 class Blog(models.Model):
     blogTitle=models.CharField(max_length=(150))
     blogPost=models.TextField()
-    blogImage=models.ImageField(("Image"),upload_to=upload_to, default="blogs/logo.svg")
+    blogImage=models.ImageField(("Image"),upload_to=upload_to, default="blogs/default.png")
     author=models.CharField(max_length=(50))
     date_published=models.DateTimeField(default=timezone.now())
     

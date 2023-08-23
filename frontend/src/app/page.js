@@ -1,42 +1,65 @@
+"use client";
 import Nav from "../components/Nav";
 import Image from "next/image";
 import heroBackground from "/public/images/blog.webp";
 import heroImage from "/public/images/hero.jpg";
 import searchImage from "/public/images/search.png";
+import { useEffect, useState } from "react";
+import Link from "next/link";
 
 export default function Home() {
+  const imageUrl = "http://127.0.0.1:8000/api";
   const url = "http://127.0.0.1:8000/api/blogs";
+  const [blogs, setBlogs] = useState([]);
+  useEffect(() => {
+    fetch(url).then((response) => {
+      response.json().then((data) => {
+        // console.log(data);
+        setBlogs(data);
+        console.log(data);
+      });
+    });
+  }, []);
+
   return (
     <div className="">
       <Nav />
       <div>
-        <Image src={heroBackground} width={2000} />
+        <Image src={heroBackground} width={2000} alt="" />
       </div>
-      <div className="flex gap-[1em] container mx-auto">
-        <div className="my-[2em] border-2 border-blue-300 p-[1em] rounded-[8px] flex gap-3">
-          <div>
-            <Image src={heroImage} width={700} className="rounded-[7px]" />
-          </div>
-          <div>
-            <h4 className="text-[1.5rem] text-blue-600 font-medium my-5">
-              Quote Of The Day...
-            </h4>
-            <p>
-              No matter how hard life is...dont forget to pray...and never let
-              negative people spoil your name.o matter how hard life is...dont
-              forget to pray...and never let negative people spoil...
-            </p>
-            <p className="text-blue-500 my-5">
-              By Rafsa Asman | Aug 24 2023 | 0 Comments
-            </p>
-            <button className="border border-[#0775c6] py-[1em] px-[2em] text-[#0775c6] rounded-[7px]">
-              Read More
-            </button>
-          </div>
+      <div className="flex gap-[10em] container mx-auto">
+        <div className="flex flex-col">
+          {blogs.map((blogItems) => {
+            return (
+              <div className="w-[100%] border-2 border-[#0A91F2] rounded-lg p-5 flex gap-5 my-5">
+                <div className="w-[40%] h-[200px] rounded-lg">
+                  <img
+                    src={`${imageUrl}${blogItems.blogImage}`}
+                    className="w-[120%] h-[100%] rounded-lg"
+                  />
+                </div>
+                <div className="w-60%">
+                  <h1 className="text-[#0775C6] text-4xl my-3">
+                    {blogItems.blogTitle}
+                  </h1>
+                  <p className="mb-3">{blogItems.blogPost}</p>
+                  <p className=" text-[#0A91F2] mb-3">
+                    By {blogItems.author} | {blogItems.date_published} | 0
+                    Comments
+                  </p>
+                  <Link>
+                    <button className="border-2 rounded-md px-10 text-center py-2 shadow text-[#1EB9EA] border-[#0A91F2]">
+                      Read More
+                    </button>
+                  </Link>
+                </div>
+              </div>
+            );
+          })}
         </div>
         <div className="border-2 border-[#0775c6] p-[1em] rounded-[8px] my-[1em]">
           <div className="flex gap-5 my-3">
-            <Image src={searchImage} width={20} />
+            <Image src={searchImage} width={20} alt="" />
             <input
               type="text"
               placeholder="Search"
