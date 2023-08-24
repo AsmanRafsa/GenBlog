@@ -11,6 +11,7 @@ class Blog(models.Model):
     blogTitle=models.CharField(max_length=(150))
     blogPost=models.TextField()
     blogImage=models.ImageField(("Image"),upload_to=upload_to, default="blogs/default.png")
+    blogUserImage=models.ImageField(("image"),upload_to=upload_to,default="blogs/avatar.png")
     author=models.CharField(max_length=(50))
     date_published=models.DateTimeField(default=timezone.now())
     
