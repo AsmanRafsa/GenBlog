@@ -22,7 +22,7 @@ export default function Nav() {
           <Link href={"/newblog"}>
             <li>Write a blog</li>
           </Link>
-          <Link href={""}>
+          <Link href={"/login"}>
             <li>
               <button className=" shadow-gray-400 shadow p-[0.8em] rounded-[5px] ">
                 Login
