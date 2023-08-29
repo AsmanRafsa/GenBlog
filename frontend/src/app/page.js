@@ -52,7 +52,7 @@ export default function Home() {
                   <h1 className="text-[#0775C6] text-4xl my-3">
                     {blogItems.blogTitle}
                   </h1>
-                  <p className="mb-3 text-[1.2rem]">{blogItems.blogPost}</p>
+                  <p dangerouslySetInnerHTML={{__html:`${blogItems.blogPost.substr(0,119)}...`}} className="mb-3 text-[1.2rem]"></p>
                   <p className=" text-[#0A91F2] mb-3">
                     By {blogItems.author} | {blogItems.date_published} | 0
                     Comments

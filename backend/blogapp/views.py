@@ -1,10 +1,12 @@
+from .serializers import CustomTokenObtainPairSerializer
+from rest_framework_simplejwt.views import TokenObtainPairView
 from django.shortcuts import render
-from rest_framework import status
+from rest_framework import status,viewsets,permissions
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from django.http import Http404
 from .models import Blog
-from .serializers import BlogSerializer
+from .serializers import BlogSerializer,UserSerializer
 # Create your views here.
 #  All blogs
 class BlogView(APIView):
@@ -47,6 +49,22 @@ class SingleBlogView(APIView):
         blog=self.get_single_blog(id)
         blog.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+    
+class UserView(APIView):    
+    permission_classes=(permissions.AllowAny,)
+    authentication_classes=()
+    
+    def post(self,request,format='json'):
+        serializer=UserSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data,status=status.HTTP_201_CREATED)
+        return Response(serializer.errors,status=status.HHTP_400_BAD_REQUEST)     
+    
+class CustomTokenObtainView(TokenObtainPairView):
+    serializer_class=CustomTokenObtainPairSerializer
+    
+        
 
         
                

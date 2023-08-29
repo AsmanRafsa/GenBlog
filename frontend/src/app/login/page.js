@@ -9,6 +9,11 @@ export default function Login() {
   function getLoginData(e) {
     e.preventDefault()(...formData, [e, target.name], e.target.value);
   }
+  function manageLoginErrors(e) {
+    e.preventDefault();
+    const errors={}
+    
+  }
 
   return (
     <>
@@ -28,23 +33,28 @@ export default function Login() {
                 className="mt-[-8.5em]  bg-gray-300 rounded-[50%]"
               />
             </div>
-            <input
-              name="email"
-              type="email"
-              className="shadow shadow-gray-400 p-3 my-3"
-              placeholder="Email Address"
-              onChange={(e) => {
-                getLoginData(e);
-              }}
-            />
-            <input
-              type="password"
-              className="shadow shadow-gray-400 my-5 p-3"
-              placeholder="password"
-              name="password"
-              onChange={()=>{getLoginData(e)}}
-
-            />
+            <div>
+              <input
+                name="email"
+                type="email"
+                className="shadow shadow-gray-400 p-3 my-3 outline-none w-[100%]"
+                placeholder="Email Address"
+                onChange={(e) => {
+                  getLoginData(e);
+                }}
+              />
+            </div>
+            <div>
+              <input
+                type="password"
+                className="shadow shadow-gray-400 my-5 p-3 outline-none w-[100%]"
+                placeholder="password"
+                name="password"
+                onChange={() => {
+                  getLoginData(e);
+                }}
+              />
+            </div>
             <button className="w-[100%] text-white bg-[#0775c6] p-4 rounded-[5px]">
               Login
             </button>

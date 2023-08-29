@@ -29,7 +29,7 @@ export default function Nav() {
               </button>
             </li>
           </Link>
-          <Link href={""}>
+          <Link href={"/signup"}>
             <li>
               <button className="bg-[#0775C6] p-[0.8em] rounded-xl text-white">
                 Sign Up
